@@ -2,48 +2,49 @@ def call(Map config = [:]) {
     pipeline {
         agent any
         parameters {
-            choice(name: 'DEPLOY_ENV', choices: ['staging', 'production'], description: 'Environment to deploy to')
-            string(name:'Cleaned message', defaultValue: 'Cleaned message', description: 'Message to display')
-            booleanParam(name: 'RUN_SECURITY_SCAN', defaultValue: true, description:'run security scan')
+            choice(name: 'ENVIRONMENT', choices: ['dev', 'staging', 'prod'], description: 'Select environment')
         }
-        stages{
-            stage ('Setup'){
-                steps{
-                    script{
-                        echo "Setting up ${params.APP_NAME}"
-                        org.myorg.utils.BuildUtils.setupJava()
+        stages {
+            stage('Setup') {
+                steps {
+                    script {
+                        def buildUtils = new org.myorg.utils.BuildUtils(this)
+                        buildUtils.setupJava()
                     }
                 }
             }
-            stage ('Install Dependencies'){
-                steps{
-                    script{
-                        org.myorg.utils.BuildUtils.installDependencies()
+            stage('Install Dependencies') {
+                steps {
+                    script {
+                        def buildUtils = new org.myorg.utils.BuildUtils(this)
+                        buildUtils.installDependencies()
                     }
                 }
             }
-            stage ('Build'){
-                steps{
-                    script{
-                        org.myorg.utils.BuildUtils.buildApp()
+            stage('Build') {
+                steps {
+                    script {
+                        def buildUtils = new org.myorg.utils.BuildUtils(this)
+                        buildUtils.buildApp()
                     }
                 }
             }
-            stage ('Test'){
-                steps{
-                    script{
-                        org.myorg.utils.BuildUtils.runTests()
+            stage('Test') {
+                steps {
+                    script {
+                        def testUtils = new org.myorg.utils.TestUtils(this)
+                        testUtils.runTests()
                     }
                 }
             }
-            stage ('Deploy'){
-                steps{
-                    script{
-                        org.myorg.utils.BuildUtils.deployApp()
+            stage('Deploy') {
+                steps {
+                    script {
+                        def deployUtils = new org.myorg.utils.DeployUtils(this)
+                        deployUtils.deployApp(params.ENVIRONMENT)
                     }
                 }
             }
         }
-
-        }
+    }
 }
