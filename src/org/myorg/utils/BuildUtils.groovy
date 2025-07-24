@@ -1,24 +1,20 @@
 package org.myorg.utils
 
 class BuildUtils implements Serializable {
-    def steps
 
-    BuildUtils(steps) {
-        this.steps = steps
+    static void setupJava() {
+        println "Setting up Java environment"
     }
 
-    def setupJava() {
-        steps.echo "🔧 Setting up Java..."
-        steps.sh 'echo Simulated Java setup'
+    static void setupNode() {
+        println "Setting up Node.js environment"
     }
 
-    def installDependencies() {
-        steps.echo "📦 Installing dependencies..."
-        steps.sh 'echo Simulated dependency installation'
+    static void runTests() {
+        println "Running tests"
     }
 
-    def buildApp() {
-        steps.echo "🏗️ Building application..."
-        steps.sh 'echo Simulated app build'
+    static void deployApp() {
+        println "Deploying application"
     }
 }
