@@ -17,4 +17,12 @@ class BuildUtils implements Serializable {
     static void deployApp() {
         println "Deploying application"
     }
+
+    static void installDependencies() {
+        println "Installing dependencies"
+    }
+
+    static void buildApp() {
+        println "Building application"
+    }
 }
