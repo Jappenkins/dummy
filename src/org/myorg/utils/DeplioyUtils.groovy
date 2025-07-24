@@ -7,8 +7,9 @@ class DeployUtils implements Serializable {
         this.steps = steps
     }
 
-    def deployApp(env) {
-        steps.echo "🚀 Deploying to ${env}..."
-        steps.sh "echo Simulated deployment to ${env}"
+    def deployApp(String env) {
+        steps.echo "Deploying application to ${env} environment"
+        steps.sleep 1
+        steps.echo "Deployment to ${env} completed."
     }
 }
