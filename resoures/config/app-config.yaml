@@ -1,0 +1,5 @@
+staging:
+url: https://staging.example.com
+
+production:
+url: https://production.example.com
