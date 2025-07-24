@@ -1,13 +1,16 @@
 package org.myorg.utils
 class BuildUtils {
     static def setupJava() {
-        echo "Setting up Java"
-        
+        steps.echo "Setting up Java"
+        steps.sh 'echo simulated java setup'
+
     }
     static def installDependencies() {
-        echo "Installing dependencies"
+        steps.echo "Installing dependencies"    
+        steps.sh 'echo simulated dependency installation'
     }
     static def buildApp() {
-        echo "Building app"
+        steps.echo "Building app"   
+        steps.sh 'echo simulated build'
     }
 }
