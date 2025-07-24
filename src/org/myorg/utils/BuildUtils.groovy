@@ -1,16 +1,24 @@
 package org.myorg.utils
-class BuildUtils {
-    static def setupJava() {
-        steps.echo "Setting up Java"
-        steps.sh 'echo simulated java setup'
 
+class BuildUtils implements Serializable {
+    def steps
+
+    BuildUtils(steps) {
+        this.steps = steps
     }
-    static def installDependencies() {
-        steps.echo "Installing dependencies"    
-        steps.sh 'echo simulated dependency installation'
+
+    def setupJava() {
+        steps.echo "🔧 Setting up Java..."
+        steps.sh 'echo Simulated Java setup'
     }
-    static def buildApp() {
-        steps.echo "Building app"   
-        steps.sh 'echo simulated build'
+
+    def installDependencies() {
+        steps.echo "📦 Installing dependencies..."
+        steps.sh 'echo Simulated dependency installation'
+    }
+
+    def buildApp() {
+        steps.echo "🏗️ Building application..."
+        steps.sh 'echo Simulated app build'
     }
 }

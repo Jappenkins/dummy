@@ -1,7 +1,14 @@
 package org.myorg.utils
-class DeployUtils {
-    static def deployApp() {
-        echo "Deploying app to ${params.DEPLOY_ENV}"
-        sh 'echo simulated deployment to ${params.DEPLOY_ENV}'
+
+class DeployUtils implements Serializable {
+    def steps
+
+    DeployUtils(steps) {
+        this.steps = steps
+    }
+
+    def deployApp(env) {
+        steps.echo "🚀 Deploying to ${env}..."
+        steps.sh "echo Simulated deployment to ${env}"
     }
 }

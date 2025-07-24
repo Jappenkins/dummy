@@ -1,7 +1,14 @@
 package org.myorg.utils
-class TestUtils {
-    static def runTests() {
-        echo "Running tests"
-        sh 'echo simulated test run'
+
+class TestUtils implements Serializable {
+    def steps
+
+    TestUtils(steps) {
+        this.steps = steps
+    }
+
+    def runTests() {
+        steps.echo "🧪 Running tests..."
+        steps.sh 'echo Simulated test execution'
     }
 }
